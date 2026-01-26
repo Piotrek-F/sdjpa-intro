@@ -7,11 +7,11 @@ import jakarta.persistence.Id;
 
 import java.util.Objects;
 
-@Entity
+//@Entity
 public class Author {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String firstName;
