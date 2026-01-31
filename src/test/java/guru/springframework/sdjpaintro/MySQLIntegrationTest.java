@@ -4,6 +4,7 @@ import guru.springframework.sdjpaintro.domain.AuthorUuid;
 import guru.springframework.sdjpaintro.domain.BookNatural;
 import guru.springframework.sdjpaintro.domain.BookUuid;
 import guru.springframework.sdjpaintro.domain.composite.AuthorComposite;
+import guru.springframework.sdjpaintro.domain.composite.AuthorEmbeded;
 import guru.springframework.sdjpaintro.domain.composite.NameId;
 import guru.springframework.sdjpaintro.repositories.*;
 import org.junit.jupiter.api.Test;
@@ -35,6 +36,21 @@ public class MySQLIntegrationTest {
 
     @Autowired
     AuthorCompositeRepository authorCompositeRepository;
+
+    @Autowired
+    AuthorEmbeddedRepository authorEmbeddedRepository;
+
+    @Test
+    void authorEmbededTest() {
+        NameId nameId = new NameId("John", "T");
+        AuthorEmbeded authorEmbeded = new AuthorEmbeded(nameId);
+
+        AuthorEmbeded saved = authorEmbeddedRepository.save(authorEmbeded);
+        assertThat(saved).isNotNull();
+
+        AuthorEmbeded fetched = authorEmbeddedRepository.getById(nameId);
+        assertThat(fetched).isNotNull();
+    }
 
     @Test
     void authorCompositeTest() {
